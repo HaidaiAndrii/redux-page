@@ -15,3 +15,8 @@ export const SORTBUTTONS = [
       title: "Оптимальный",
     },
   ];
+
+  export const STOPSFILTER = {
+    title: "Количество персадок",
+    inputs: ["Без пересадок", "1 Пересадка ", "2 Пересадки", "3 Пересадки"],
+  };

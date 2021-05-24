@@ -8,12 +8,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import { SortTickets } from './components/sortTickets/SortTickets';
 import { Card } from './components/card/Card'
 import  styles from './styles.module.css'
+import { STOPSFILTER } from './../../constants/aviasales'
+import { FilterByStops } from './components/fillter/FilterByStops'
 
 
 export const  Tickets = () => {
     let [ticketsCount, setTicketsCount] = useState(5);
     let [searchId, setSearchId] = useState("");
     let [ecrinizedTickets, setEcrinizedTickets] = useState([]);
+    let [selectedFillters, setFillter] = useState([]);
     const tickets = useSelector(state => state.allAviaTickets)
     const store = useSelector(state => state)
     const dispatch = useDispatch()
@@ -34,34 +37,9 @@ export const  Tickets = () => {
           })
         }
         
-        // if(tickets.length) {
-        //   dispatch(aviasalesAllReducerAC(tickets))
-        //   dispatch(aviasalesReducerAC(tickets))
-        // }
         console.log(tickets);
-      }, [searchId, tickets]);
-
-      // const sortBy = (value) => {
-      //   switch (value) {
-      //     case 'price': dispatch(aviasalesAllReducerAC(storeTickets.sort((a,b) => a.price - b.price)));
-      //   }
-      // }
-
-      // function ecrinizeTickets(tickets) {
-      //   if (tickets && ecrinizedTickets.length === 0) {
-      //     setEcrinizedTickets(tickets);
-      //   }
-    
-      //   if (selectedFillters.length) {
-      //     return setEcrinizedTickets(
-      //       tickets.filter((ticket) =>
-      //         selectedFillters.includes(ticket.segments[1].stops.length)
-      //       )
-      //     );
-      //   }
-    
-      //   setEcrinizedTickets(tickets);
-      // }
+        ecrinizeTickets(tickets);
+      }, [searchId, tickets, selectedFillters]);
     
       function sortBy(value) {
         let sordetarr = [];
@@ -84,6 +62,22 @@ export const  Tickets = () => {
             return value;
         }
         setEcrinizedTickets([...sordetarr]);
+      }
+
+      function ecrinizeTickets(tickets) {
+        if (tickets && ecrinizedTickets.length === 0) {
+          return setEcrinizedTickets([...tickets]);
+        }
+    
+        if (selectedFillters.length) {
+          return setEcrinizedTickets(
+            tickets.filter((ticket) =>
+              selectedFillters.includes(ticket.segments[1].stops.length)
+            )
+          );
+        }
+    
+        return setEcrinizedTickets([...tickets]);
       }
     
       function findOptimalTicket() {
@@ -109,12 +103,12 @@ export const  Tickets = () => {
     
       return (
       <div className={styles.main}>
-        {/* {ecrinizedTickets.length !== 0 ? <>
+        {ecrinizedTickets.length !== 0 ? <>
           <FilterByStops
           values={STOPSFILTER}
           selectedFillters={selectedFillters}
           setFillter={setFillter}
-          /> */}
+          />
         <div>
           <SortTickets sortBy={sortBy} findOptimalTicket={findOptimalTicket} />
           {ecrinizedTickets.slice(0, ticketsCount).map((ticket, index) => (
@@ -128,12 +122,12 @@ export const  Tickets = () => {
           </button>
           }
         </div>
-        {/* </>
+        </>
         :  <>
           <div>
             Trying to load tickets, if it takes more then minute - please, reload this page.
           </div>
-        </>} */}
+        </>}
       </div>
       )
 }
