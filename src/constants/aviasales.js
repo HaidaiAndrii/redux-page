@@ -1,5 +1,8 @@
 export const SET_TICKETS_TO_STORE = 'SET_TICKETS_TO_STORE';
 export const SET_ALLTICKETS_TO_STORE = 'SET_ALLTICKETS_TO_STORE';
+export const SUCCESS = 'SUCCESS';
+export const SET_AUTH = 'SET_AUTH';
+export const SORT_BY = 'SORT_BY';
 
 export const SORTBUTTONS = [
     {

@@ -3,12 +3,20 @@ import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import { useForm } from "react-hook-form";
 // import { useAuth } from "../../hooks/hook-auth";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { loginAC } from "../../store/actions/actionlogin";
+import { ButtonGroup } from "@material-ui/core";
 
+// import Button from "@material-ui/core/Button";
 
 export const Login = ({ signIn, signOut }) => {
   let history = useHistory() || [];
-  // const auth = useAuth();
+  const dispatch = useDispatch();
+
+  let root = {
+    marginBottom: 20
+  }
 
   const {
     register,
@@ -17,11 +25,11 @@ export const Login = ({ signIn, signOut }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
-  //   // let status = auth.signin(data.login, data.password);
-  //   if (status) {
+    console.log(data);
+    if (data.login === "user" && data.password === "user") {
       history.push("/tickets");
-  //   }
+      dispatch(loginAC(true));
+    }
   };
 
   return (
@@ -41,13 +49,16 @@ export const Login = ({ signIn, signOut }) => {
         />
         {errors.exampleRequired && <span>This field is required</span>}
 
-        <Button type="submit" variant="contained" color="primary" className={style.button}>asdas</Button>
-     
-        {/* <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
-
-          <Button onClick={signIn}>Log in</Button>
-          <Button onClick={signOut}>Log out</Button>
-
+        <ButtonGroup
+          variant="contained"
+          color="primary"
+          aria-label="contained primary button group"
+          fullWidth	= 'true'
+          classe={root}
+        >
+          <Button type="submit">Login</Button>
+          <Button onClick={signIn}>Google</Button>
+        </ButtonGroup>
       </form>
     </div>
   );

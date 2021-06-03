@@ -1,4 +1,4 @@
-import { SET_TICKETS_TO_STORE, SET_ALLTICKETS_TO_STORE } from '../../constants/aviasales'
+import { SET_TICKETS_TO_STORE,SUCCESS, SORT_BY} from '../../constants/aviasales'
 
 export const aviasalesReducerAC = (tickets) => {
     return {
@@ -7,9 +7,19 @@ export const aviasalesReducerAC = (tickets) => {
     };
 };
 
-export const aviasalesAllReducerAC = (tickets) => {
+export const success = (tickets) => {
     return {
-        type: SET_ALLTICKETS_TO_STORE,
-        alltickets: tickets,
+        type: SUCCESS,
+        tickets,
+    };
+};
+
+
+
+export const ticketsMiddleAC = (payload) => {
+    return {
+        type: SORT_BY,
+        payload: payload.tickets,
+        sortType: payload.sortType
     };
 };

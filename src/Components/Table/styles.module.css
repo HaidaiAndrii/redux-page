@@ -1,0 +1,48 @@
+.title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 80px;
+}
+
+.table {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+.tableHeader {
+    background-color: #3F51B5;
+    color: white;
+    padding: 0px;
+}
+
+.tableTr {
+    padding: 0 ;
+    height: 40px;
+}
+
+.tableTh {
+    padding: 0;
+    width: 20%;
+}
+
+.tableTd {
+    text-align: center;
+}
+.filterArrow {
+    background-size: contain;
+    width: 10px;
+    height: 10px;
+}
+
+/* .upArrow {
+    background-image: url('../../images/up-arrow.svg');
+}
+
+.downArrow {
+    background-image: url('../../images/down-arrow.svg');
+} */
+
+.tableWrapper {
+    padding-top: 20px;
+}

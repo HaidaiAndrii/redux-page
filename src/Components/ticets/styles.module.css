@@ -1,7 +1,8 @@
 .main {
+    padding-top: 40px;
     display: flex;
     justify-content: space-around;
-    background-color: #b66dff;
+    background-color: #e2e2e2;
 }
 
 .cards {
