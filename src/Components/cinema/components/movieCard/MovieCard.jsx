@@ -1,11 +1,9 @@
 import Button from "@material-ui/core/Button";
 import styles from "./styles.module.css";
 import React, { useState, useEffect } from "react";
-import  { moviesSagaAC }  from '../../../../store/actions/cinemaAC'
+import { moviesSagaAC } from "../../../../store/actions/cinemaAC";
 import { useDispatch } from "react-redux";
-
-
-const SEANS_TIME = [10, 12, 14, 16, 18, 20];
+import { SEANS_TIME } from '../../../../constants/cinema';
 
 export const MovieCard = ({
   title,
@@ -18,27 +16,31 @@ export const MovieCard = ({
   const localFileName = `${selectedDate.day}/${selectedDate.month}/${selectedDate.year}`;
 
   let [timesFromLocal, setTimesLocal] = useState([]);
-  let cinema = JSON.parse(localStorage.getItem('cinema'));
+  let cinema = JSON.parse(localStorage.getItem("cinema"));
 
   useEffect(() => {
-    if ( JSON.parse(localStorage.getItem('cinema'))[localFileName] === undefined) {
-      localStorage.setItem('cinema', JSON.stringify({...cinema, [localFileName]: {}}))
-    } 
-    
-    if (!(JSON.parse(localStorage.getItem('cinema'))[localFileName][title])){
-      let frr = {...JSON.parse(localStorage.getItem('cinema'))};
-      frr[localFileName][title] = [];
-      localStorage.setItem('cinema', JSON.stringify(frr))
-    }  else {
+    if (
+      JSON.parse(localStorage.getItem("cinema"))[localFileName] === undefined
+    ) {
+      localStorage.setItem(
+        "cinema",
+        JSON.stringify({ ...cinema, [localFileName]: {} })
+      );
     }
 
-    setTimesLocal(JSON.parse(localStorage.getItem('cinema'))[localFileName])
-  }, [selectedDate, title ]);
+    if (!JSON.parse(localStorage.getItem("cinema"))[localFileName][title]) {
+      let frr = { ...JSON.parse(localStorage.getItem("cinema")) };
+      frr[localFileName][title] = [];
+      localStorage.setItem("cinema", JSON.stringify(frr));
+    }
+
+    setTimesLocal(JSON.parse(localStorage.getItem("cinema"))[localFileName]);
+  }, [selectedDate, title]);
 
   function handdleClick(value) {
-    dispatch(moviesSagaAC({value, localFileName, title}));
-    setTimesLocal(JSON.parse(localStorage.getItem('cinema'))[localFileName])
-    }
+    dispatch(moviesSagaAC({ value, localFileName, title }));
+    setTimesLocal(JSON.parse(localStorage.getItem("cinema"))[localFileName]);
+  }
 
   return (
     <div className={styles.card}>
@@ -59,22 +61,24 @@ export const MovieCard = ({
             <a href={imdbUrl}>IMDB</a>
           </div>
           <div className={styles.buttons}>
-                        {
-            SEANS_TIME.map((time, id) => (
+            {SEANS_TIME.map((time, id) => (
               <Button
-              name={time}
-              key={id}
-              variant={timesFromLocal[title]?.includes(`${time}`) ? 'contained' : 'outlined'}
-              color="primary"
-              type="button"
-              onClick={(e) => {
-                handdleClick(e.currentTarget.name);
-              }}
+                name={time}
+                key={id}
+                variant={
+                  timesFromLocal[title]?.includes(`${time}`)
+                    ? "contained"
+                    : "outlined"
+                }
+                color="primary"
+                type="button"
+                onClick={(e) => {
+                  handdleClick(e.currentTarget.name);
+                }}
               >
                 {time}.00
               </Button>
-            ))
-            }
+            ))}
           </div>
           {localFileName}
         </div>

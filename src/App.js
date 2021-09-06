@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import "./App.css";
 import { Login } from "./Components/login/Login";
 import {
@@ -151,10 +150,6 @@ function App() {
           <Route path="/table/:id">
             <UserComponent />
           </Route>
-
-          {/* <Route path="" exact>
-            <UserWelcome profile={googleProfile} />
-          </Route> */}
 
           <Route path="/cinema" exact>
             <Cinema />

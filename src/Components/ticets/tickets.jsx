@@ -7,30 +7,25 @@ import {
   // aviasalesAllReducerAC,
 } from "../../store/actions/aviasalesAction";
 import { useDispatch, useSelector } from "react-redux";
-// import {styles } from './styles.module.css'
 import { SortTickets } from "./components/sortTickets/SortTickets";
 import { Card } from "./components/card/Card";
 import styles from "./styles.module.css";
 import { STOPSFILTER } from "./../../constants/aviasales";
 import { FilterByStops } from "./components/fillter/FilterByStops";
-// import { aviasalesSortAC } from "../../store/actions/aviasalesAction";
 
 export const Tickets = () => {
   let [ticketsCount, setTicketsCount] = useState(5);
-  // let [searchId, setSearchId] = useState("");
   let [ecrinizedTickets, setEcrinizedTickets] = useState([]);
   let [selectedFillters, setFillter] = useState([]);
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.setItem('isAuth', JSON.stringify(true))
-    if(!store.aviaTickets.length) {
+    localStorage.setItem("isAuth", JSON.stringify(true));
+    if (!store.aviaTickets.length) {
       dispatch(aviasalesReducerAC());
-
     }
     ecrinizeTickets(store.aviaTickets);
-
   }, [selectedFillters, store]);
 
   function sortBy(value) {

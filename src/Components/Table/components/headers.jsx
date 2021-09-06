@@ -7,15 +7,15 @@ const Header = ({ headings, handleSort, users, sorted, sortedField }) => {
       className={styles.tableTh}
       onClick={(e) => handleSort(el.title, users)}
     >
-{sortedField === el.title && 
-      <div
-      className={
-        sorted
-        ? `${styles.filterArrow} ${styles.downArrow}`
-        : `${styles.filterArrow} ${styles.upArrow}`
-      }
-      ></div>
-    }
+      {sortedField === el.title && (
+        <div
+          className={
+            sorted
+              ? `${styles.filterArrow} ${styles.downArrow}`
+              : `${styles.filterArrow} ${styles.upArrow}`
+          }
+        ></div>
+      )}
       {el.title}
     </th>
   ));

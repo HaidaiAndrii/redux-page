@@ -1,38 +1,38 @@
 .title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 80px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 80px;
 }
 
 .table {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 800px;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 800px;
 }
 
 .tableHeader {
-    background-color: #3F51B5;
-    color: white;
-    padding: 0px;
+  background-color: #3f51b5;
+  color: white;
+  padding: 0px;
 }
 
 .tableTr {
-    padding: 0 ;
-    height: 40px;
+  padding: 0;
+  height: 40px;
 }
 
 .tableTh {
-    padding: 0;
-    width: 20%;
+  padding: 0;
+  width: 20%;
 }
 
 .tableTd {
-    text-align: center;
+  text-align: center;
 }
 .filterArrow {
-    background-size: contain;
-    width: 10px;
-    height: 10px;
+  background-size: contain;
+  width: 10px;
+  height: 10px;
 }
 
 /* .upArrow {
@@ -44,5 +44,5 @@
 } */
 
 .tableWrapper {
-    padding-top: 20px;
+  padding-top: 20px;
 }

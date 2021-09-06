@@ -1,8 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-// import createSagaMiddleware from 'redux-saga';
 import { aviasalesReducer } from "./reducers/aviasalesReducer";
-// import { aviasalesAllReducer } from './reducers/aviasalesAllReducer';
-// import { cinemaReducer } from './reducers/cinemaReducer';
 import { authReducer } from "./reducers/authReducer";
 import { usersReducer } from "./reducers/usersReducer";
 import { cinemaReducer } from "./reducers/cinemaReducer";

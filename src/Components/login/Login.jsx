@@ -2,21 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import { useForm } from "react-hook-form";
-// import { useAuth } from "../../hooks/hook-auth";
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { loginAC } from "../../store/actions/actionlogin";
 import { ButtonGroup } from "@material-ui/core";
-
-// import Button from "@material-ui/core/Button";
 
 export const Login = ({ signIn, signOut }) => {
   let history = useHistory() || [];
   const dispatch = useDispatch();
 
   let root = {
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  };
 
   const {
     register,
@@ -53,7 +50,7 @@ export const Login = ({ signIn, signOut }) => {
           variant="contained"
           color="primary"
           aria-label="contained primary button group"
-          fullWidth	= 'true'
+          fullWidth="true"
           classe={root}
         >
           <Button type="submit">Login</Button>
