@@ -1,7 +1,6 @@
 import styles from "./styles.module.css";
 
 export function FilterByStops({ values, selectedFillters, setFillter }) {
-
   function addFillter(value) {
     if (selectedFillters.includes(value)) {
       let newArr = [...selectedFillters];
@@ -16,7 +15,7 @@ export function FilterByStops({ values, selectedFillters, setFillter }) {
     <div className={styles.wrapper}>
       <h3 className={styles.title}>{values.title}</h3>
       {values.inputs.map((value, i) => (
-        <div className={styles.inputWrapper} key={value} >
+        <div className={styles.inputWrapper} key={value}>
           <input
             type="checkbox"
             name={i}

@@ -1,26 +1,30 @@
-  
-import {
-    createStore,
-    combineReducers,
-    compose,
-    applyMiddleware,
-} from 'redux';
-// import createSagaMiddleware from 'redux-saga';
-import { aviasalesReducer } from './reducers/aviasalesReducer';
-import { aviasalesAllReducer } from './reducers/aviasalesAllReducer';
-// import { cinemaReducer } from './reducers/cinemaReducer';
-// import rootSaga from './sagas/rootSaga';
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
+import { aviasalesReducer } from "./reducers/aviasalesReducer";
+import { authReducer } from "./reducers/authReducer";
+import { usersReducer } from "./reducers/usersReducer";
+import { cinemaReducer } from "./reducers/cinemaReducer";
+import ticketsSaga from "./sagas/ticketsSaga";
+import createSagaMiddleware from "redux-saga";
+import usersSaga from "./sagas/usersSaga";
+import cinemaSaga from "./sagas/cinemaSaga";
+import { all } from "redux-saga/effects";
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-    aviaTickets: aviasalesReducer,
-    allAviaTickets: aviasalesAllReducer
+  aviaTickets: aviasalesReducer,
+  isAuth: authReducer,
+  users: usersReducer,
+  movies: cinemaReducer,
 });
-// const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware()),
+  rootReducer,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
-// sagaMiddleware.run(rootSaga);
+
+function* rootWatcher() {
+  yield all([ticketsSaga(), usersSaga(), cinemaSaga()]);
+}
+
+sagaMiddleware.run(rootWatcher);

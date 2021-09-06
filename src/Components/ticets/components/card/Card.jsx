@@ -40,7 +40,9 @@ export function Card({ ticket }) {
       endHour -= 24;
     }
 
-    return `${checkTime(hour)}:${checkTime(minutes)} - ${checkTime(endHour)}:${checkTime(endMinutes)}`;
+    return `${checkTime(hour)}:${checkTime(minutes)} - ${checkTime(
+      endHour
+    )}:${checkTime(endMinutes)}`;
   }
 
   function getDatetitle(segments) {

@@ -1,15 +1,17 @@
+import Button from "@material-ui/core/Button";
 
 export function SortButton({ title, name, sortBy }) {
-
-    return (
-        <button
-          type="button"
-          name={name}
-          className=''
-          onClick={(e) => sortBy(e.target.name)}
-        >
-          {title}
-        </button>
-    );
-  }
-  
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+      type="button"
+      name={name}
+      onClick={(e) => {
+        sortBy(e.currentTarget.name);
+      }}
+    >
+      {title}
+    </Button>
+  );
+}
